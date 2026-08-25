@@ -3,6 +3,12 @@ using WeatherMonitor.Web.Components;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+});
+
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
