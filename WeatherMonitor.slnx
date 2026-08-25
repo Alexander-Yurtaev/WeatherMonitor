@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Project Path="WeatherMonitor.Application/WeatherMonitor.Application.csproj" Id="2112e950-d45e-4f45-b4c8-a1cf033008f5" />
+  <Project Path="WeatherMonitor.Domain/WeatherMonitor.Domain.csproj" Id="4debbc20-8a9a-4aaf-bdf7-b1b00bb9ae10" />
+  <Project Path="WeatherMonitor.Tests/WeatherMonitor.Tests.csproj" Id="e25ffe32-0f28-4c9e-b831-13a4ba3b29b6" />
+  <Project Path="WeatherMonitor.Web/WeatherMonitor.Web.csproj" Id="cec18224-e060-411b-b6c2-c9c339320c1f" />
+</Solution>
