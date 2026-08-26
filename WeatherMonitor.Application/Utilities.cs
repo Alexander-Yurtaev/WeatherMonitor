@@ -7,8 +7,15 @@ public static class Utilities
         return Math.Round(kmh * 1000 / 60 / 60, 1);
     }
 
-    public static int GetHourFromTime(string time)
+    public static int GetHourFromTime(string value)
     {
-        return int.Parse(time.Substring(0, 2));
+        if (!DateTime.TryParse(value, out var time)) return 0;
+        return time.Hour;
+    }
+
+    public static string GetTimeFromDate(string value)
+    {
+        if (!DateTime.TryParse(value, out var datetime)) return "--";
+        return datetime.ToString("HH:mm");
     }
 }

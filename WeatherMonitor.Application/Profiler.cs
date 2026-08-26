@@ -17,7 +17,7 @@ public class Profiler : Profile
             .ForMember(dest => dest.Name, opt => opt.MapFrom(l => l.Name));
 
         CreateMap<CurrentDto, Current>()
-            .ForMember(dest => dest.LastUpdated, opt => opt.MapFrom(c => c.LastUpdated.Substring(c.LastUpdated.Length - 5)))
+            .ForMember(dest => dest.LastUpdated, opt => opt.MapFrom(c => Utilities.GetTimeFromDate(c.LastUpdated)))
             .ForMember(dest => dest.Temperature, opt => opt.MapFrom(c => Math.Round(c.Temperature, 0)))
             .ForMember(dest => dest.Condition, opt => opt.NullSubstitute(new ConditionDto()))
             .ForMember(dest => dest.FeelsLike, opt => opt.MapFrom(c => Math.Round(c.FeelsLike, 0)))

@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
   </Folder>
   <Project Path="WeatherMonitor.Application/WeatherMonitor.Application.csproj" Id="2112e950-d45e-4f45-b4c8-a1cf033008f5" />
   <Project Path="WeatherMonitor.Domain/WeatherMonitor.Domain.csproj" Id="4debbc20-8a9a-4aaf-bdf7-b1b00bb9ae10" />
