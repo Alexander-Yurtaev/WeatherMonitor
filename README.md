@@ -128,3 +128,29 @@ MIT
 ---
 
 *UI макет создан при помощи искусственного интеллекта.*
+
+## Скриншоты
+
+<p>
+    <em style="display: block; text-align: center;">Главное окно</em>
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px; max-width: 700px;">
+        <img src="./Documents/Screenshorts/Main.png" alt="Главное окно" style="width: 100%; height: auto; display: block;"/>
+      </div>
+</p>
+
+<p>
+    <em style="display: block; text-align: center;">Загрузка</em>
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px; max-width: 700px;">
+        <img src="./Documents/Screenshorts/Loading.png" alt="Загрузка" style="width: 100%; height: auto; display: block;"/>
+      </div>
+</p>
+
+<p>
+    <em style="display: block; text-align: center;">Ошибка</em>
+    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px; max-width: 700px;">
+        <img src="./Documents/Screenshorts/Error.png" alt="Ошибка" style="width: 100%; height: auto; display: block;"/>
+      </div>
+</p>
