@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddAutoMapper(_ => { }, typeof(Profiler).Assembly);
+
 builder.Services.AddHttpClient("WeatherHandlersClient", client =>
 {
     client.BaseAddress = new Uri("https://api.weatherapi.com/v1/forecast.json");

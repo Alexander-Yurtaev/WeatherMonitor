@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using System.Globalization;
 using System.Net.Http.Json;
 using WeatherMonitor.Domain;
@@ -8,10 +9,12 @@ namespace WeatherMonitor.Application;
 public class WeatherHandlers : IRequestHandler<GetWeatherRequest, GetWeatherResponse>
 {
     private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IMapper _mapper;
 
-    public WeatherHandlers(IHttpClientFactory httpClientFactory)
+    public WeatherHandlers(IHttpClientFactory httpClientFactory, IMapper mapper)
     {
         _httpClientFactory = httpClientFactory;
+        _mapper = mapper;
     }
 
     public async Task<GetWeatherResponse> Handle(GetWeatherRequest request, CancellationToken cancellationToken)
@@ -24,8 +27,8 @@ public class WeatherHandlers : IRequestHandler<GetWeatherRequest, GetWeatherResp
         try
         {
             var client = _httpClientFactory.CreateClient("WeatherHandlersClient");
-            var data = await client.GetFromJsonAsync<WeatherData>($"?key=fa8b3df74d4042b9aa7135114252304&q={lat},{lon}&days=3");
-            response.Data = data;
+            var dto = await client.GetFromJsonAsync<WeatherDto>($"?key=fa8b3df74d4042b9aa7135114252304&q={lat},{lon}&days=3");
+            response.Data = _mapper.Map<WeatherData>(dto);
         }
         catch (Exception ex)
         {

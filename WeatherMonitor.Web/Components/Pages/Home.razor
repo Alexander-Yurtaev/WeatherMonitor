@@ -6,18 +6,82 @@
 
 <PageTitle>Home</PageTitle>
 
-@if (string.IsNullOrEmpty(ErrorMessage))
-{
-    <h1>@WeatherData?.Location?.Name</h1>
-}
-else
-{
-    <h1>@ErrorMessage</h1>
-}
+<div class="app-card" id="app">
+    <!-- Состояние загрузки -->
+    <div class="state-overlay @(State == WeatherMonitorState.Loading ? "active" : "hidden")" id="loadingState">
+        <div class="spinner"></div>
+        <div class="state-title">Загрузка погоды</div>
+        <div class="state-sub" id="loadingSub">Обновление данных...</div>
+    </div>
 
-@code{
+    <!-- Состояние ошибки -->
+    <div class="state-overlay @(State == WeatherMonitorState.Error ? "active" : "hidden")" id="errorState">
+        <i class="bi bi-exclamation-circle" style="font-size:52px; color:#ffb4a2; margin-bottom:12px;"></i>
+        <div class="state-title">Не удалось загрузить</div>
+        <div class="state-sub">@ErrorMessage</div>
+        <button class="btn-retry" id="retryBtn">
+            <i class="bi bi-arrow-repeat" style="font-size:20px;"></i> Повторить
+        </button>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="weather-content @(State == WeatherMonitorState.Complete ? "active" : "hidden")" id="weatherContent">
+
+        <!-- Шапка -->
+        <div class="city-header">
+            <div class="city-name">
+                <i class="bi bi-geo-alt"></i>
+                <span id="cityName">@(WeatherData?.Location.Name ?? "--")</span>
+            </div>
+            <div class="update-badge" id="updateTime">Обновлено: @(WeatherData?.Current.LastUpdated ?? "--")</div>
+        </div>
+
+        <!-- Текущая погода -->
+        <div class="current-weather" id="currentWeather">
+            <div class="current-temp-row">
+                <div>
+                    <div class="temp-big" id="currentTemp">@(WeatherData?.Current.Temperature ?? 0)<sup>°C</sup></div>
+                    <div class="current-desc" id="currentDesc">
+                        <span class="badge" id="conditionText">@(WeatherData?.Current.Condition.Text ?? "--")</span>
+                        <span class="badge">
+                            <i class="bi bi-thermometer-half"></i> ощущается <span id="feelsLike">@(WeatherData?.Current.FeelsLike ?? 0)</span>°C
+                        </span>
+                    </div>
+                </div>
+                <div class="weather-icon-big" id="currentIcon">
+                    <img src="@(WeatherData?.Current.Condition.Icon ?? "")"/>
+                </div>
+            </div>
+            <div class="extra-row">
+                <div class="extra-item"><i class="bi bi-droplet"></i> Влажность: <span id="humidity">@(WeatherData?.Current.Humidity ?? 0)</span>%</div>
+                <div class="extra-item"><i class="bi bi-wind"></i> Ветер: <span id="windSpeed">@(WeatherData?.Current.Wind ?? 0)</span> м/с</div>
+                <div class="extra-item"><i class="bi bi-eye"></i> <span id="visiblity">@(WeatherData?.Current.Visibility ?? 0)</span> км</div>
+            </div>
+        </div>
+
+        <!-- Почасовой прогноз -->
+        <div class="section-title">
+            <i class="bi bi-clock"></i> Почасовой
+        </div>
+        <div class="hourly-scroll" id="hourlyContainer">
+            <!-- Заполняется динамически через JavaScript -->
+        </div>
+
+        <!-- Прогноз на 3 дня -->
+        <div class="section-title" style="margin-top: 8px;">
+            <i class="bi bi-calendar3"></i> Прогноз на 3 дня
+        </div>
+        <div class="day-list" id="dayContainer">
+            <!-- Заполняется динамически через JavaScript -->
+        </div>
+    </div>
+
+</div>
+
+@code {
+    private WeatherMonitorState State = WeatherMonitorState.Complete;
     private string ErrorMessage = string.Empty;
-    private WeatherData? WeatherData;
+    private WeatherData? WeatherData = null!;
 
     protected override async Task OnParametersSetAsync()
     {
