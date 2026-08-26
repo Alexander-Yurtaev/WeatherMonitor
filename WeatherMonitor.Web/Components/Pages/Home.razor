@@ -1,10 +1,13 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 @using MediatR
+@using Microsoft.Extensions.Options
+@using WeatherMonitor.Application
 @using WeatherMonitor.Application.Enums
 @using WeatherMonitor.Application.Requests
 @using WeatherMonitor.Domain.Data
 @inject IMediator Mediator
+@inject IOptions<WeatherApiOptions> WeatherApiOptions
 
 <PageTitle>Home</PageTitle>
 
@@ -155,10 +158,9 @@
 
         State = WeatherMonitorState.Loading;
 
-        double lat = 55.7558;
-        double lon = 37.6173;
-        // double lat = 55;
-        // double lon = 37;
+        var options = WeatherApiOptions.Value;
+        double lat = options.Lat;
+        double lon = options.Lon;
 
         var request = new GetWeatherRequest(lat, lon);
         var response = await Mediator.Send(request);

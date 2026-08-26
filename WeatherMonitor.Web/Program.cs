@@ -6,6 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddOptions<WeatherApiOptions>()
+    .Bind(builder.Configuration.GetSection(WeatherApiOptions.SectionName));
+
 builder.Services.AddAutoMapper(_ => { }, typeof(Profiler).Assembly);
 
 builder.Services.AddHttpClient("WeatherHandlersClient", client =>
