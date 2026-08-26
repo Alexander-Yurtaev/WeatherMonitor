@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="weather-icon-big" id="currentIcon">
-                    <img src="@(WeatherData?.Current.Condition.Icon ?? "")"/>
+                    <img src="@(WeatherData?.Current.Condition.Icon ?? "")" />
                 </div>
             </div>
             <div class="extra-row">
@@ -64,14 +64,20 @@
             <i class="bi bi-clock"></i> Почасовой
         </div>
         <div class="hourly-scroll" id="hourlyContainer">
-            @if (WeatherData is not null)
+            @if (WeatherData is null || WeatherData.Forecast.Forecastday[0].Hour.Count() == 0)
             {
-                foreach(var hour in WeatherData?.Forecast.Forecastday[0].Hour)
+                <div class="text-center text-white-50 w-100" style="padding: 20px;">
+                    Нет данных о почасовой погоде
+                </div>
+            }
+            else
+            {
+                foreach (var hour in WeatherData.Forecast.Forecastday[0].Hour)
                 {
                     <HourItem HourTime="@(hour.Time)" Icon="@(hour.Condition.Icon)" Temperature="@(hour.Temperature)" DayLabel="Today" />
                 }
 
-                foreach(var hour in WeatherData?.Forecast.Forecastday[1].Hour)
+                foreach (var hour in WeatherData.Forecast.Forecastday[1].Hour)
                 {
                     <HourItem HourTime="@(hour.Time)" Icon="@(hour.Condition.Icon)" Temperature="@(hour.Temperature)" DayLabel="Завтра" />
                 }
@@ -83,7 +89,38 @@
             <i class="bi bi-calendar3"></i> Прогноз на 3 дня
         </div>
         <div class="day-list" id="dayContainer">
-            <!-- Заполняется динамически через JavaScript -->
+            @if (WeatherData is null || WeatherData.Forecast.Forecastday.Count() == 0)
+            {
+                <div class="text-center text-white-50" style="padding: 20px;">
+                    Нет данных о прогнозе
+                </div>
+            }
+            else
+            {
+                var index = 0;
+                foreach (var day in WeatherData.Forecast.Forecastday)
+                {
+                    var dayName = index == 0 ? "Сегодня" : index == 1 ? "Завтра" : DateTime.Parse(day.Date).ToString("ddd");
+                    var max = Math.Round(day.Day.MaxTemperature, 0);
+                    var min = Math.Round(day.Day.MinTemperature, 0);
+                    var icon = day.Day.Condition.Icon;
+                    var description = day.Day.Condition.Text;
+
+                    <div class="day-card">
+                        <div class="day-name">@dayName</div>
+                        <div class="day-icon">
+                            <span><img src="@icon" /></span>
+                            <span class="desc-text">@description</span>
+                        </div>
+                        <div class="day-temps">
+                            <span class="max-temp">@(max)°</span>
+                            <span class="min-temp">@(min)°</span>
+                        </div>
+                    </div>
+
+                    index++;
+                }
+            }
         </div>
     </div>
 
