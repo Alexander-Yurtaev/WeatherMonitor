@@ -137,6 +137,7 @@ MIT
       <div style="flex: 1; min-width: 300px; max-width: 700px;">
         <img src="./Documents/Screenshorts/Main.png" alt="Главное окно" style="width: 100%; height: auto; display: block;"/>
       </div>
+    </div>
 </p>
 
 <p>
@@ -145,6 +146,7 @@ MIT
       <div style="flex: 1; min-width: 300px; max-width: 700px;">
         <img src="./Documents/Screenshorts/Loading.png" alt="Загрузка" style="width: 100%; height: auto; display: block;"/>
       </div>
+    </div>
 </p>
 
 <p>
@@ -153,4 +155,5 @@ MIT
       <div style="flex: 1; min-width: 300px; max-width: 700px;">
         <img src="./Documents/Screenshorts/Error.png" alt="Ошибка" style="width: 100%; height: auto; display: block;"/>
       </div>
+    </div>
 </p>
