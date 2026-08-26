@@ -1,6 +1,6 @@
-﻿using WeatherMonitor.Domain;
+﻿using WeatherMonitor.Domain.Data;
 
-namespace WeatherMonitor.Application;
+namespace WeatherMonitor.Application.Responses;
 
 public class GetWeatherResponse
 {

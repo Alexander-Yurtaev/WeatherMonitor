@@ -1,6 +1,7 @@
 ﻿using MediatR;
+using WeatherMonitor.Application.Responses;
 
-namespace WeatherMonitor.Application;
+namespace WeatherMonitor.Application.Requests;
 
 public class GetWeatherRequest : IRequest<GetWeatherResponse>
 {

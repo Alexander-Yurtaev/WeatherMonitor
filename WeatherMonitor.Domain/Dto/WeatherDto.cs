@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WeatherMonitor.Domain;
+namespace WeatherMonitor.Domain.Dto;
 
 public class WeatherDto
 {

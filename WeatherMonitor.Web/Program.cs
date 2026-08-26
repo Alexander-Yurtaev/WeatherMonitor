@@ -1,4 +1,5 @@
 using WeatherMonitor.Application;
+using WeatherMonitor.Application.Handlers;
 using WeatherMonitor.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);

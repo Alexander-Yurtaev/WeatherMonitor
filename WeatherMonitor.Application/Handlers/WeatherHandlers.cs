@@ -2,9 +2,12 @@
 using MediatR;
 using System.Globalization;
 using System.Net.Http.Json;
-using WeatherMonitor.Domain;
+using WeatherMonitor.Application.Requests;
+using WeatherMonitor.Application.Responses;
+using WeatherMonitor.Domain.Data;
+using WeatherMonitor.Domain.Dto;
 
-namespace WeatherMonitor.Application;
+namespace WeatherMonitor.Application.Handlers;
 
 public class WeatherHandlers : IRequestHandler<GetWeatherRequest, GetWeatherResponse>
 {

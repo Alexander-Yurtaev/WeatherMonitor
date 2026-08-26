@@ -1,4 +1,4 @@
-﻿namespace WeatherMonitor.Domain;
+﻿namespace WeatherMonitor.Domain.Data;
 
 public class WeatherData
 {

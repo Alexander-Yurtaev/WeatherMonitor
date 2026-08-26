@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using WeatherMonitor.Domain;
+using WeatherMonitor.Domain.Data;
+using WeatherMonitor.Domain.Dto;
 
 namespace WeatherMonitor.Application;
 

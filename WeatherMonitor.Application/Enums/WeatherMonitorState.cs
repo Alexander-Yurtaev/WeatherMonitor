@@ -1,4 +1,4 @@
-﻿namespace WeatherMonitor.Application;
+﻿namespace WeatherMonitor.Application.Enums;
 
 public enum WeatherMonitorState
 {
