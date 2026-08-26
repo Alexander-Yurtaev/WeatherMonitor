@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System.Text.Json.Serialization;
 using WeatherMonitor.Domain;
 
 namespace WeatherMonitor.Application;
@@ -38,8 +37,8 @@ public class Profiler : Profile
             .ForMember(dest => dest.Hour, opt => opt.MapFrom(f => f.Hour));
 
         CreateMap<DayDto, Day>()
-            .ForMember(dest => dest.MaxTemperature, opt => opt.MapFrom(d => d.MaxTemperature))
-            .ForMember(dest => dest.MinTemperature, opt => opt.MapFrom(d => d.MinTemperature))
+            .ForMember(dest => dest.MaxTemperature, opt => opt.MapFrom(d => Math.Round(d.MaxTemperature, 0)))
+            .ForMember(dest => dest.MinTemperature, opt => opt.MapFrom(d => Math.Round(d.MinTemperature, 0)))
             .ForMember(dest => dest.Condition, opt => opt.NullSubstitute(new ConditionDto()));
 
         CreateMap<HourDto, Hour>()

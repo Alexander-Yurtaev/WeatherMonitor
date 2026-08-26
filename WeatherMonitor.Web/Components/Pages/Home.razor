@@ -1,4 +1,5 @@
 ﻿@page "/"
+@rendermode InteractiveServer
 @using MediatR
 @using WeatherMonitor.Application;
 @using WeatherMonitor.Domain
@@ -19,7 +20,7 @@
         <i class="bi bi-exclamation-circle" style="font-size:52px; color:#ffb4a2; margin-bottom:12px;"></i>
         <div class="state-title">Не удалось загрузить</div>
         <div class="state-sub">@ErrorMessage</div>
-        <button class="btn-retry" id="retryBtn">
+        <button class="btn-retry" id="retryBtn" onclick="@LoadWeather">
             <i class="bi bi-arrow-repeat" style="font-size:20px;"></i> Повторить
         </button>
     </div>
@@ -74,7 +75,7 @@
             {
                 foreach (var hour in WeatherData.Forecast.Forecastday[0].Hour)
                 {
-                    <HourItem HourTime="@(hour.Time)" Icon="@(hour.Condition.Icon)" Temperature="@(hour.Temperature)" DayLabel="Today" />
+                    <HourItem HourTime="@(hour.Time)" Icon="@(hour.Condition.Icon)" Temperature="@(hour.Temperature)" DayLabel="Сегодня" />
                 }
 
                 foreach (var hour in WeatherData.Forecast.Forecastday[1].Hour)
@@ -100,9 +101,9 @@
                 var index = 0;
                 foreach (var day in WeatherData.Forecast.Forecastday)
                 {
-                    var dayName = index == 0 ? "Сегодня" : index == 1 ? "Завтра" : DateTime.Parse(day.Date).ToString("ddd");
-                    var max = Math.Round(day.Day.MaxTemperature, 0);
-                    var min = Math.Round(day.Day.MinTemperature, 0);
+                    var dayName = index == 0 ? "Сегодня" : index == 1 ? "Завтра" : DateTime.Parse(day.Date).ToString("ddd").ToUpper();
+                    var max = day.Day.MaxTemperature;
+                    var min = day.Day.MinTemperature;
                     var icon = day.Day.Condition.Icon;
                     var description = day.Day.Condition.Text;
 
@@ -127,12 +128,32 @@
 </div>
 
 @code {
-    private WeatherMonitorState State = WeatherMonitorState.Complete;
+    private WeatherMonitorState State = WeatherMonitorState.Loading;
     private string ErrorMessage = string.Empty;
-    private WeatherData? WeatherData = null!;
+    private WeatherData? WeatherData;
 
-    protected override async Task OnParametersSetAsync()
+    protected override Task OnInitializedAsync()
     {
+        return base.OnInitializedAsync();
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        return base.OnParametersSetAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        await LoadWeather();
+    }
+
+    private async Task LoadWeather()
+    {
+        if (WeatherData is not null) return;
+
+        State = WeatherMonitorState.Loading;
+
         double lat = 55.7558;
         double lon = 37.6173;
         // double lat = 55;
@@ -141,7 +162,16 @@
         var request = new GetWeatherRequest(lat, lon);
         var response = await Mediator.Send(request);
 
-        ErrorMessage = response.ErrorMessage;
-        WeatherData = response.Data;
+        if (string.IsNullOrEmpty(response.ErrorMessage))
+        {
+            WeatherData = response.Data;
+            State = WeatherMonitorState.Complete;
+        }
+        else
+        {
+            ErrorMessage = response.ErrorMessage;
+            State = WeatherMonitorState.Error;
+        }
+        StateHasChanged();
     }
 }
