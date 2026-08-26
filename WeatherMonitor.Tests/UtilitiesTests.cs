@@ -3,7 +3,7 @@ using WeatherMonitor.Application;
 
 namespace WeatherMonitor.Tests
 {
-    public class UtilitiesTest
+    public class UtilitiesTests
     {
         [Theory]
         [InlineData(1, 0.3)]
@@ -13,6 +13,20 @@ namespace WeatherMonitor.Tests
             // Arrange
             // Act
             var actual = Utilities.Kmh2Ms(kmh);
+
+            // Assert
+            actual.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("00:00", 0)]
+        [InlineData("01:00", 1)]
+        [InlineData("01:49", 1)]
+        public void GetHourFromTime_Shoild_Correct(string time, int expected)
+        {
+            // Arrange
+            // Act
+            var actual = Utilities.GetHourFromTime(time);
 
             // Assert
             actual.Should().Be(expected);
