@@ -85,8 +85,11 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        float lat = 55.7558f;
-        float lon = 37.6173f;
+        double lat = 55.7558;
+        double lon = 37.6173;
+        // double lat = 55;
+        // double lon = 37;
+
         var request = new GetWeatherRequest(lat, lon);
         var response = await Mediator.Send(request);
 

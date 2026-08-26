@@ -2,8 +2,8 @@
 
 public static class Utilities
 {
-    public static float Kmh2Ms(float kmh)
+    public static double Kmh2Ms(double kmh)
     {
-        return kmh * 1000 / 60;
+        return Math.Round(kmh * 1000 / 60 / 60, 1);
     }
 }

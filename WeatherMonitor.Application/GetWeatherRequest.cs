@@ -4,13 +4,13 @@ namespace WeatherMonitor.Application;
 
 public class GetWeatherRequest : IRequest<GetWeatherResponse>
 {
-    public GetWeatherRequest(float lat, float lon)
+    public GetWeatherRequest(double lat, double lon)
     {
         Lat = lat;
         Lon = lon;
     }
 
-    public float Lat { get; set; }
+    public double Lat { get; set; }
 
-    public float Lon { get; set; }
+    public double Lon { get; set; }
 }

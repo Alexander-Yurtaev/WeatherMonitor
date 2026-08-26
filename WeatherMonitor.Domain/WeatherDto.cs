@@ -20,21 +20,21 @@ public class CurrentDto
     public string LastUpdated { get; set; } = "Сейчас";
 
     [JsonPropertyName("temp_c")]
-    public float Temperature { get; set; }
+    public double Temperature { get; set; }
 
     [JsonPropertyName("condition")]
     public ConditionDto? Condition { get; set; }
 
     [JsonPropertyName("feelslike_c")]
-    public float FeelsLike { get; set; }
+    public double FeelsLike { get; set; }
 
     public int Humidity { get; set; }
 
     [JsonPropertyName("wind_kph")]
-    public float Wind { get; set; }
+    public double Wind { get; set; }
 
     [JsonPropertyName("vis_km")]
-    public float Visibility { get; set; }
+    public double Visibility { get; set; }
 }
 
 public class ConditionDto
@@ -58,10 +58,10 @@ public class ForecastdayDto
 public class DayDto
 {
     [JsonPropertyName("maxtemp_c")]
-    public float MaxTemperature { get; set; }
+    public double MaxTemperature { get; set; }
 
     [JsonPropertyName("mintemp_c")]
-    public float MinTemperature { get; set; }
+    public double MinTemperature { get; set; }
 
     public ConditionDto? Condition { get; set; }
 }
@@ -71,7 +71,7 @@ public class HourDto
     public string Time { get; set; } = string.Empty;
 
     [JsonPropertyName("temp_c")]
-    public float Temperature { get; set; }
+    public double Temperature { get; set; }
 
     public ConditionDto? Condition { get; set; }
 }

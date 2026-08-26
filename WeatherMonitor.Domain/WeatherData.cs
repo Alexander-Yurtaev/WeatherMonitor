@@ -17,10 +17,10 @@ public class Current
     public string LastUpdated { get; set; } = string.Empty;
     public int Temperature { get; set; }
     public Condition Condition { get; set; }
-    public float FeelsLike { get; set; }
+    public double FeelsLike { get; set; }
     public int Humidity { get; set; }
-    public float Wind { get; set; }
-    public float Visibility { get; set; }
+    public double Wind { get; set; }
+    public double Visibility { get; set; }
 }
 
 public class Condition
@@ -43,14 +43,14 @@ public class Forecastday
 
 public class Day
 {
-    public float MaxTemperature { get; set; }
-    public float MinTemperature { get; set; }
+    public double MaxTemperature { get; set; }
+    public double MinTemperature { get; set; }
     public Condition Condition { get; set; }
 }
 
 public class Hour
 {
     public string Time { get; set; } = string.Empty;
-    public float Temperature { get; set; }
+    public double Temperature { get; set; }
     public Condition Condition { get; set; }
 }
