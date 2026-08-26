@@ -1,5 +1,6 @@
 ﻿@page "/"
 @rendermode InteractiveServer
+@implements IAsyncDisposable
 @using MediatR
 @using Microsoft.Extensions.Options
 @using WeatherMonitor.Application
@@ -132,6 +133,7 @@
 </div>
 
 @code {
+    private CancellationTokenSource cts = new();
     private WeatherMonitorState State = WeatherMonitorState.Loading;
     private string ErrorMessage = string.Empty;
     private WeatherData? WeatherData;
@@ -163,7 +165,7 @@
         double lon = options.Lon;
 
         var request = new GetWeatherRequest(lat, lon);
-        var response = await Mediator.Send(request);
+        var response = await Mediator.Send(request, cts.Token);
 
         if (string.IsNullOrEmpty(response.ErrorMessage))
         {
@@ -176,5 +178,17 @@
             State = WeatherMonitorState.Error;
         }
         StateHasChanged();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (cts is null) return;
+
+        if (State == WeatherMonitorState.Loading)
+        {
+            await cts.CancelAsync();            
+        }
+
+        cts.Dispose();
     }
 }
