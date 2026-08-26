@@ -11,4 +11,9 @@
     <PackageReference Include="MediatR" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WeatherMonitor.Application\WeatherMonitor.Application.csproj" />
+    <ProjectReference Include="..\WeatherMonitor.Domain\WeatherMonitor.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

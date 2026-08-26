@@ -1,7 +1,32 @@
 ﻿@page "/"
+@using MediatR
+@using WeatherMonitor.Application;
+@using WeatherMonitor.Domain
+@inject IMediator Mediator
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+@if (string.IsNullOrEmpty(ErrorMessage))
+{
+    <h1>@WeatherData?.Location?.Name</h1>
+}
+else
+{
+    <h1>@ErrorMessage</h1>
+}
 
-Welcome to your new app.
+@code{
+    private string ErrorMessage = string.Empty;
+    private WeatherData? WeatherData;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        float lat = 55.7558f;
+        float lon = 37.6173f;
+        var request = new GetWeatherRequest(lat, lon);
+        var response = await Mediator.Send(request);
+
+        ErrorMessage = response.ErrorMessage;
+        WeatherData = response.Data;
+    }
+}

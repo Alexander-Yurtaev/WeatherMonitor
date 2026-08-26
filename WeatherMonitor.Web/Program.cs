@@ -1,12 +1,18 @@
+using WeatherMonitor.Application;
 using WeatherMonitor.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddHttpClient("WeatherHandlersClient", client =>
+{
+    client.BaseAddress = new Uri("https://api.weatherapi.com/v1/forecast.json");
+});
+
 builder.Services.AddMediatR(cfg =>
 {
-    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
+    cfg.RegisterServicesFromAssembly(typeof(WeatherHandlers).Assembly);
 });
 
 builder.Services.AddRazorComponents()

@@ -8,5 +8,10 @@
 	
   <ItemGroup>
 	<PackageReference Include="MediatR" />
+	<PackageReference Include="Microsoft.Extensions.Http" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <ProjectReference Include="..\WeatherMonitor.Domain\WeatherMonitor.Domain.csproj" />
   </ItemGroup>
 </Project>
