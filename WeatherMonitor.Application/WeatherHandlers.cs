@@ -29,6 +29,10 @@ public class WeatherHandlers : IRequestHandler<GetWeatherRequest, GetWeatherResp
             var client = _httpClientFactory.CreateClient("WeatherHandlersClient");
             var dto = await client.GetFromJsonAsync<WeatherDto>($"?key=fa8b3df74d4042b9aa7135114252304&q={lat},{lon}&days=3");
             response.Data = _mapper.Map<WeatherData>(dto);
+
+            var lastUpdatedHour = Utilities.GetHourFromTime(response.Data.Current.LastUpdated);
+            var currentDay = response.Data.Forecast.Forecastday[0].Hour;
+            response.Data.Forecast.Forecastday[0].Hour = [.. currentDay.Where(c => Utilities.GetHourFromTime(c.Time) >= lastUpdatedHour)];
         }
         catch (Exception ex)
         {

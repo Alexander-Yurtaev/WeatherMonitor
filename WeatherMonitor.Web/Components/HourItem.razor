@@ -1,0 +1,23 @@
+﻿<div class="hour-item">
+    <div class="hour-label">@HourTime</div>
+    <div class="hour-icon"><img src="@Icon" /></div>
+    <div class="hour-temp">@(Temperature)°</div>
+    @if (!string.IsNullOrEmpty(DayLabel))
+    {
+        <div class=\"hour-day-label\">@DayLabel</div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string HourTime { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Icon { get; set; } = string.Empty;
+
+    [Parameter]
+    public int Temperature { get; set; }
+
+    [Parameter]
+    public string DayLabel { get; set; } = string.Empty;
+}

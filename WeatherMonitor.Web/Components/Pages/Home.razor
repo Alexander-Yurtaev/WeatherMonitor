@@ -64,7 +64,18 @@
             <i class="bi bi-clock"></i> Почасовой
         </div>
         <div class="hourly-scroll" id="hourlyContainer">
-            <!-- Заполняется динамически через JavaScript -->
+            @if (WeatherData is not null)
+            {
+                foreach(var hour in WeatherData?.Forecast.Forecastday[0].Hour)
+                {
+                    <HourItem HourTime="@(hour.Time)" Icon="@(hour.Condition.Icon)" Temperature="@(hour.Temperature)" DayLabel="Today" />
+                }
+
+                foreach(var hour in WeatherData?.Forecast.Forecastday[1].Hour)
+                {
+                    <HourItem HourTime="@(hour.Time)" Icon="@(hour.Condition.Icon)" Temperature="@(hour.Temperature)" DayLabel="Завтра" />
+                }
+            }
         </div>
 
         <!-- Прогноз на 3 дня -->

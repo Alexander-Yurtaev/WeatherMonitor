@@ -43,8 +43,8 @@ public class Profiler : Profile
             .ForMember(dest => dest.Condition, opt => opt.NullSubstitute(new ConditionDto()));
 
         CreateMap<HourDto, Hour>()
-            .ForMember(dest => dest.Time, opt => opt.MapFrom(h => h.Time))
-            .ForMember(dest => dest.Temperature, opt => opt.MapFrom(h => h.Temperature))
+            .ForMember(dest => dest.Time, opt => opt.MapFrom(h => h.Time.Substring(h.Time.Length - 5)))
+            .ForMember(dest => dest.Temperature, opt => opt.MapFrom(h => Math.Round(h.Temperature, 0)))
             .ForMember(dest => dest.Condition, opt => opt.NullSubstitute(new ConditionDto()));
     }
 }

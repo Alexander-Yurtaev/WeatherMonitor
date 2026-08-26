@@ -1,0 +1,36 @@
+﻿.hour-item {
+    flex: 0 0 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255,255,255,0.02);
+    border-radius: 40px;
+    padding: 12px 4px 10px;
+    border: 1px solid rgba(255,255,255,0.03);
+    transition: 0.2s;
+    position: relative;
+}
+
+.hour-item .hour-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+}
+
+.hour-item .hour-icon {
+    font-size: 28px;
+    margin: 6px 0 2px;
+}
+
+.hour-item .hour-temp {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.hour-item .hour-day-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}

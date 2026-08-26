@@ -51,6 +51,6 @@ public class Day
 public class Hour
 {
     public string Time { get; set; } = string.Empty;
-    public double Temperature { get; set; }
+    public int Temperature { get; set; }
     public Condition Condition { get; set; }
 }

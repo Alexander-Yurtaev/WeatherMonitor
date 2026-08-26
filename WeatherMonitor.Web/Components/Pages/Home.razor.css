@@ -21,9 +21,9 @@
     padding: 24px 12px;
 }
 
-    .state-overlay.active {
-        display: flex;
-    }
+.state-overlay.active {
+    display: flex;
+}
 
 .spinner {
     width: 56px;
@@ -86,9 +86,9 @@
     display: block;
 }
 
-    .weather-content.hidden {
-        display: none;
-    }
+.weather-content.hidden {
+    display: none;
+}
 
 /* Шапка */
 .city-header {
@@ -108,10 +108,10 @@
     letter-spacing: -0.2px;
 }
 
-    .city-name i {
-        font-size: 26px;
-        color: #9ac8ff;
-    }
+.city-name i {
+    font-size: 26px;
+    color: #9ac8ff;
+}
 
 .update-badge {
     font-size: 13px;
@@ -145,13 +145,13 @@
     line-height: 1;
 }
 
-    .temp-big sup {
-        font-size: 28px;
-        top: -18px;
-        margin-left: 4px;
-        font-weight: 400;
-        color: rgba(255,255,255,0.6);
-    }
+.temp-big sup {
+    font-size: 28px;
+    top: -18px;
+    margin-left: 4px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+}
 
 .weather-icon-big {
     font-size: 64px;
@@ -169,22 +169,22 @@
     flex-wrap: wrap;
 }
 
-    .current-desc .badge {
-        background: rgba(255,255,255,0.04);
-        padding: 4px 16px 4px 12px;
-        border-radius: 40px;
-        font-weight: 400;
-        font-size: 15px;
-        color: rgba(255,255,255,0.8);
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-    }
+.current-desc .badge {
+    background: rgba(255,255,255,0.04);
+    padding: 4px 16px 4px 12px;
+    border-radius: 40px;
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(255,255,255,0.8);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
 
-        .current-desc .badge i {
-            font-size: 18px;
-            color: #9ac8ff;
-        }
+.current-desc .badge i {
+    font-size: 18px;
+    color: #9ac8ff;
+}
 
 .extra-row {
     display: flex;
@@ -203,10 +203,10 @@
     color: rgba(255,255,255,0.8);
 }
 
-    .extra-item i {
-        font-size: 20px;
-        color: #7bb3ff;
-    }
+.extra-item i {
+    font-size: 20px;
+    color: #7bb3ff;
+}
 
 /* Секции */
 .section-title {
@@ -244,14 +244,14 @@
     -webkit-overflow-scrolling: touch;
 }
 
-    .hourly-scroll::-webkit-scrollbar {
-        height: 4px;
-    }
+.hourly-scroll::-webkit-scrollbar {
+    height: 4px;
+}
 
-    .hourly-scroll::-webkit-scrollbar-thumb {
-        background: rgba(255,255,255,0.2);
-        border-radius: 20px;
-    }
+.hourly-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+}
 
 .hour-item {
     flex: 0 0 70px;
@@ -265,30 +265,6 @@
     transition: 0.2s;
     position: relative;
 }
-
-    .hour-item .hour-label {
-        font-size: 13px;
-        font-weight: 500;
-        color: rgba(255,255,255,0.7);
-    }
-
-    .hour-item .hour-icon {
-        font-size: 28px;
-        margin: 6px 0 2px;
-    }
-
-    .hour-item .hour-temp {
-        font-weight: 600;
-        font-size: 18px;
-    }
-
-    .hour-item .hour-day-label {
-        font-size: 9px;
-        color: rgba(255,255,255,0.3);
-        margin-top: 2px;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-    }
 
 /* Прогноз на 3 дня */
 .day-list {
@@ -321,14 +297,14 @@
     gap: 12px;
 }
 
-    .day-icon span:first-child {
-        font-size: 28px;
-    }
+.day-icon span:first-child {
+    font-size: 28px;
+}
 
-    .day-icon .desc-text {
-        font-size: 15px;
-        color: rgba(255,255,255,0.7);
-    }
+.day-icon .desc-text {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+}
 
 .day-temps {
     font-weight: 600;
@@ -337,13 +313,13 @@
     gap: 16px;
 }
 
-    .day-temps .max-temp {
-        color: #f0f7ff;
-    }
+.day-temps .max-temp {
+    color: #f0f7ff;
+}
 
-    .day-temps .min-temp {
-        color: rgba(255,255,255,0.4);
-    }
+.day-temps .min-temp {
+    color: rgba(255,255,255,0.4);
+}
 
 @media (max-width: 440px) {
     .app-card {
